@@ -39,6 +39,7 @@ private slots:
     void on_actionShow_instruction_sheet_triggered();
     void on_exportFontButton_clicked();
     void on_exportFontAAButton_clicked();
+    void on_exportFontCustomButton_clicked();
 
 private:
     Ui::MainWindow *ui;

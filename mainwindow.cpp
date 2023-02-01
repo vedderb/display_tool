@@ -391,3 +391,66 @@ void MainWindow::on_exportFontAAButton_clicked()
     out.flush();
     f.close();
 }
+
+void MainWindow::on_exportFontCustomButton_clicked()
+{
+    QString filename = QFileDialog::getSaveFileName(this,
+                                                    tr("Save Binary File"), "",
+                                                    tr("Bin files (*.bin *.BIN)"));
+
+    if (filename.isEmpty()) {
+        return;
+    }
+
+    if (!filename.endsWith(".bin", Qt::CaseInsensitive)) {
+        filename.append(".bin");
+    }
+
+    QFile f(filename);
+
+    if (!f.open(QIODevice::WriteOnly)) {
+        return;
+    }
+
+    int w = ui->fontWBox->value();
+    int h = ui->fontHBox->value();
+    int bytesPerChar = (w * h) / 8;
+    int charNum = ui->exportCustomNumOnlyBox->isChecked() ? 10 : 95;
+
+    if ((w * h) % 8 != 0) {
+        bytesPerChar++;
+    }
+
+    QByteArray fontArr;
+    fontArr.resize(bytesPerChar * charNum + 4);
+
+    for (auto &c: fontArr) {
+        c = 0;
+    }
+
+    fontArr[0] = w;
+    fontArr[1] = h;
+    fontArr[2] = charNum;
+    fontArr[3] = 1; // 1 bit per char
+
+    for (int ch = 0;ch < charNum;ch++) {
+        QImage img(w, h, QImage::Format_ARGB32);
+        QPainter p(&img);
+
+        p.fillRect(img.rect(), Qt::black);
+        p.setPen(Qt::white);
+
+        p.setFont(getSelectedFont(false));
+        p.drawText(QRect(0, 0, w, h), Qt::AlignCenter, QChar(ch + (charNum == 10 ? '0' : ' ')));
+
+        for (int i = 0;i < w * h;i++) {
+            QColor px = img.pixel(i % w, i / w);
+            char c = fontArr[4 + bytesPerChar * ch + i / 8];
+            c |= (px != Qt::black) << (i % 8);
+            fontArr[4 + bytesPerChar * ch + (i / 8)] = c;
+        }
+    }
+
+    f.write(fontArr);
+    f.close();
+}

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1098</width>
-    <height>732</height>
+    <width>1166</width>
+    <height>796</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -353,13 +353,6 @@
              <property name="spacing">
               <number>3</number>
              </property>
-             <item row="1" column="0">
-              <widget class="QCheckBox" name="fontBoldBox">
-               <property name="text">
-                <string>Bold</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="0" colspan="2">
               <widget class="QFontComboBox" name="fontBox">
                <property name="sizePolicy">
@@ -377,19 +370,6 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QSpinBox" name="fontYPosBox">
-               <property name="prefix">
-                <string>Y: </string>
-               </property>
-               <property name="maximum">
-                <number>128</number>
-               </property>
-               <property name="value">
-                <number>46</number>
-               </property>
-              </widget>
-             </item>
              <item row="5" column="1">
               <widget class="QSpinBox" name="fontHBox">
                <property name="prefix">
@@ -400,6 +380,45 @@
                </property>
                <property name="value">
                 <number>16</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="2">
+              <widget class="QDoubleSpinBox" name="fontScaleBox">
+               <property name="prefix">
+                <string>Scale: </string>
+               </property>
+               <property name="decimals">
+                <number>2</number>
+               </property>
+               <property name="maximum">
+                <double>10.000000000000000</double>
+               </property>
+               <property name="singleStep">
+                <double>0.010000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="0">
+              <widget class="QCheckBox" name="fontAABox">
+               <property name="text">
+                <string>Antialias</string>
+               </property>
+              </widget>
+             </item>
+             <item row="9" column="1">
+              <widget class="QCheckBox" name="fontBorderBox">
+               <property name="toolTip">
+                <string>Draw border around characters to see their bounding box</string>
+               </property>
+               <property name="text">
+                <string>Border</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -429,6 +448,33 @@
                </property>
               </widget>
              </item>
+             <item row="1" column="0">
+              <widget class="QCheckBox" name="fontBoldBox">
+               <property name="text">
+                <string>Bold</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QSpinBox" name="fontYPosBox">
+               <property name="prefix">
+                <string>Y: </string>
+               </property>
+               <property name="maximum">
+                <number>128</number>
+               </property>
+               <property name="value">
+                <number>46</number>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="0" colspan="2">
+              <widget class="QPushButton" name="exportFontButton">
+               <property name="text">
+                <string>Export C File</string>
+               </property>
+              </widget>
+             </item>
              <item row="3" column="0">
               <widget class="QSpinBox" name="fontXPosBox">
                <property name="prefix">
@@ -442,49 +488,20 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="0" colspan="2">
-              <widget class="QDoubleSpinBox" name="fontScaleBox">
-               <property name="prefix">
-                <string>Scale: </string>
-               </property>
-               <property name="decimals">
-                <number>2</number>
-               </property>
-               <property name="maximum">
-                <double>10.000000000000000</double>
-               </property>
-               <property name="singleStep">
-                <double>0.010000000000000</double>
-               </property>
-               <property name="value">
-                <double>1.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0" colspan="2">
-              <widget class="QPushButton" name="exportFontButton">
+             <item row="12" column="0">
+              <widget class="QPushButton" name="exportFontCustomButton">
                <property name="text">
-                <string>Export C File</string>
+                <string>Export Custom</string>
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
-              <widget class="QCheckBox" name="fontAABox">
-               <property name="text">
-                <string>Antialias</string>
-               </property>
-              </widget>
-             </item>
-             <item row="9" column="1">
-              <widget class="QCheckBox" name="fontBorderBox">
+             <item row="12" column="1">
+              <widget class="QCheckBox" name="exportCustomNumOnlyBox">
                <property name="toolTip">
-                <string>Draw border around characters to see their bounding box</string>
+                <string>Export only numbers to save space</string>
                </property>
                <property name="text">
-                <string>Border</string>
-               </property>
-               <property name="checked">
-                <bool>true</bool>
+                <string>NumOnly</string>
                </property>
               </widget>
              </item>
@@ -584,7 +601,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1098</width>
+     <width>1166</width>
      <height>22</height>
     </rect>
    </property>

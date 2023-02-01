@@ -31,7 +31,7 @@ void ImageWidget::paintEvent(QPaintEvent *event)
 
     if (!mPixmap.isNull()) {
         QPainter painter(this);
-        painter.setRenderHints(0);
+        painter.setRenderHints(QPainter::Antialiasing, false);
         painter.fillRect(rect(), Qt::black);
 
         int pw = mPixmap.width();
